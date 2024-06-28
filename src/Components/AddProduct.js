@@ -41,7 +41,11 @@ const AddProduct = () => {
       }
     }
   };
-
+  const handleBeforeInput = (event) => {
+    if (/[0-9]/.test(event.data)) {
+      event.preventDefault();
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
@@ -112,7 +116,7 @@ const AddProduct = () => {
             <input type="text" id="sku" name="sku" value={sku} onChange={handleInputChange} required />
           
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" value={name} onChange={handleInputChange} required />
+            <input type="text" id="name" name="name" value={name} onChange={handleInputChange} onBeforeInput={handleBeforeInput} required />
           
             <label htmlFor="price">Price:</label>
             <input type="number" id="price" name="price" step="0.01" value={price} onChange={handleInputChange} required />
