@@ -20,7 +20,34 @@ abstract class Product
     }
 
     abstract public function save($db);
-    abstract public static function load($db);
+    public static function load($db)
+    {
+        $stmt = $db->query("
+SELECT 
+    p.id, 
+    p.sku, 
+    p.name, 
+    p.price,
+    COALESCE(b.author, '') AS author,
+    COALESCE(b.weight, '') AS weight,
+    COALESCE(d.size, '') AS size,
+    COALESCE(f.material, '') AS material,
+    COALESCE(f.dimensions, '') AS dimensions
+FROM 
+    products p
+LEFT JOIN 
+    books b ON p.id = b.product_id
+LEFT JOIN 
+    dvds d ON p.id = d.product_id
+LEFT JOIN 
+    furniture f ON p.id = f.product_id;
+
+        ");
+        $data = $stmt->fetchAll();
+
+
+        return $data;
+    }
 
     public static function deleteByIds($pdo, $ids)
     {
