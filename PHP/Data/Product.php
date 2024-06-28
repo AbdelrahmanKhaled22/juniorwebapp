@@ -29,7 +29,7 @@ abstract class Product
             $stmt = $pdo->prepare("DELETE FROM products WHERE id IN ({$placeholders})");
             $stmt->execute($ids);
             return true; // Successful delete
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             throw $e;
         }
     }
