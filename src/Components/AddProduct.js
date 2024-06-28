@@ -107,7 +107,6 @@ const AddProduct = () => {
         </div>
     </div>
       {errorMessage && <h1>{errorMessage}</h1>}
-      <div className='form-container'>
           <form id='product_form' className='form' onSubmit={handleSubmit}>
             <label htmlFor="sku">SKU:</label>
             <input type="text" id="sku" name="sku" value={sku} onChange={handleInputChange} required />
@@ -131,7 +130,6 @@ const AddProduct = () => {
             <div style={{justifyContent: 'flex-end'}} className='actions'><button className='action-button' type="submit">Add Product</button></div>
           </form>
       </div>
-    </div>
   );
 };
 
