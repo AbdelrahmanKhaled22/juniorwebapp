@@ -2,14 +2,12 @@
 
 namespace ProductData;
 
+require_once __DIR__ . "/../Config/Config.php";
 require_once __DIR__ . "/../Data/Database.php";
 require_once __DIR__ . "/../Data/Product.php";
 require_once __DIR__ . "/../Data/Book.php";
 require_once __DIR__ . "/../Data/DVD.php";
 require_once __DIR__ . "/../Data/Furniture.php";
-
-
-header('Access-Control-Allow-Origin: http://localhost:3000', "Content-type: application/json");
 
 
 $db = new Database();
