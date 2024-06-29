@@ -3,9 +3,9 @@
 
 
 // Allow requests from a specific origin
-$allowedOrigin = 'http://localhost:3000'; // Replace with your allowed origin
+$allowedOrigins = array('http://localhost:3000', 'https://juniordevtest-abdelrahman-khaled.000webhostapp.com/'); // Replace with your allowed origin
 
-if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] === $allowedOrigin) {
+if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] === $allowedOrigins) {
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Max-Age: 86400');    // cache for 1 day
