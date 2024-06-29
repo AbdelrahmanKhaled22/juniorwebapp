@@ -72,9 +72,9 @@ function ProductList(){
       <label className="title">Product List</label>
       <div className="actions">
         <Link to="/add-product">
-          <button className="action-button">Add Product</button>
+          <button className="action-button">ADD</button>
         </Link>
-      <button className="action-button"onClick={handleDelete}>Delete Selected</button>
+      <button className="action-button"onClick={handleDelete}>MASS DELETE</button>
       </div>
     </div>
         <div id="main-container" className="grid-container">

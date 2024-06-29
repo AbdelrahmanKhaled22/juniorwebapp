@@ -117,23 +117,23 @@ const AddProduct = () => {
         <div className='actions'>
             <Link to="/">
             <button className='action-button'>
-                Cancel Without Saving
+                Cancel
             </button>
             </Link>
         </div>
     </div>
       {errorMessage && <h1>{errorMessage}</h1>}
           <form id='product_form' className='form' onSubmit={handleSubmit}>
-            <label htmlFor="sku">SKU:</label>
+            <label htmlFor="sku">{"SKU"}</label>
             <input type="text" id="sku" name="sku" value={sku} onChange={handleInputChange} required/>
           
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name">{"Name"}</label>
             <input type="text" id="name" name="name" value={name} onChange={handleInputChange} onBeforeInput={noNums} required />
           
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="price">{"Price ($)"}</label>
             <input type="number" id="price" name="price" step="0.01" value={price} onChange={handleInputChange} onBeforeInput={onlyNums} required />
           
-            <label htmlFor="type">Type:</label>
+            <label htmlFor="type">{"Type"}</label>
             <select id="productType" name="type" value={type} onChange={handleInputChange} required>
               <option value="">Select Type</option>
               <option value="Furniture">Furniture</option>
@@ -143,7 +143,7 @@ const AddProduct = () => {
           
             {renderAttributes()}
           
-            <div style={{justifyContent: 'flex-end'}} className='actions'><button className='action-button' type="submit">Add Product</button></div>
+            <div style={{justifyContent: 'flex-end'}} className='actions'><button className='action-button' type="submit">Save</button></div>
           </form>
       </div>
   );
