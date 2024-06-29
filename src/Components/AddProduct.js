@@ -41,9 +41,21 @@ const AddProduct = () => {
       }
     }
   };
-  const handleBeforeInput = (event) => {
-    if (/[0-9]/.test(event.data)) {
-      event.preventDefault();
+  const onlyNums = (event) => {
+    const allowedCharacters = /[0-9]/; // Allow only digits 0-9
+  
+    // Check if the entered character is not allowed
+    if (!allowedCharacters.test(event.data)) {
+      event.preventDefault(); // Prevent default action (input)
+    }
+  };
+
+  const noNums = (event) => {
+    const forbiddenCharacters = /[0-9]/; // Allow only digits 0-9
+  
+    // Check if the entered character is forbidden
+    if (forbiddenCharacters.test(event.data)) {
+      event.preventDefault(); // Prevent default action (input)
     }
   };
   const handleSubmit = async (e) => {
@@ -113,13 +125,13 @@ const AddProduct = () => {
       {errorMessage && <h1>{errorMessage}</h1>}
           <form id='product_form' className='form' onSubmit={handleSubmit}>
             <label htmlFor="sku">SKU:</label>
-            <input type="text" id="sku" name="sku" value={sku} onChange={handleInputChange} required />
+            <input type="text" id="sku" name="sku" value={sku} onChange={handleInputChange} required/>
           
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" value={name} onChange={handleInputChange} onBeforeInput={handleBeforeInput} required />
+            <input type="text" id="name" name="name" value={name} onChange={handleInputChange} onBeforeInput={noNums} required />
           
             <label htmlFor="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" value={price} onChange={handleInputChange} required />
+            <input type="number" id="price" name="price" step="0.01" value={price} onChange={handleInputChange} onBeforeInput={onlyNums} required />
           
             <label htmlFor="type">Type:</label>
             <select id="productType" name="type" value={type} onChange={handleInputChange} required>

@@ -7,9 +7,21 @@ const AddFurniture = ({ attributes, handleInputChange }) => {
     length: ''
   });
 
-  const handleBeforeInput = (event) => {
-    if (/[0-9]/.test(event.data)) {
-      event.preventDefault();
+  const onlyNums = (event) => {
+    const allowedCharacters = /[0-9]/; // Allow only digits 0-9
+  
+    // Check if the entered character is not allowed
+    if (!allowedCharacters.test(event.data)) {
+      event.preventDefault(); // Prevent default action (input)
+    }
+  };
+
+  const noNums = (event) => {
+    const forbiddenCharacters = /[0-9]/; // Allow only digits 0-9
+  
+    // Check if the entered character is forbidden
+    if (forbiddenCharacters.test(event.data)) {
+      event.preventDefault(); // Prevent default action (input)
     }
   };
   const handleDimensionChange = (e) => {
@@ -30,16 +42,19 @@ const AddFurniture = ({ attributes, handleInputChange }) => {
   return (
     <div>
       <label htmlFor="material">Material:</label>
-      <input type="text" id="material" name="attributes.material" value={attributes.material || ''} onChange={handleInputChange} onBeforeInput={handleBeforeInput} />
+      <input type="text" id="material" name="attributes.material" value={attributes.material || ''} onChange={handleInputChange} onBeforeInput={noNums} required/>
 
-      <label htmlFor="height">Height:</label>
-      <input type="number" id="height" name="height" value={dimensions.height} onChange={handleDimensionChange} />
+      <label htmlFor="height">{"Height (CM)"}</label>
+      <input type="number" id="height" name="height" value={dimensions.height} onChange={handleDimensionChange} onBeforeInput={onlyNums} required />
 
-      <label htmlFor="width">Width:</label>
-      <input type="number" id="width" name="width" value={dimensions.width} onChange={handleDimensionChange} />
+      <label htmlFor="width">{"Width (CM)"}</label>
+      <input type="number" id="width" name="width" value={dimensions.width} onChange={handleDimensionChange} onBeforeInput={onlyNums} required />
 
-      <label htmlFor="length">Length:</label>
-      <input type="number" id="length" name="length" value={dimensions.length} onChange={handleDimensionChange} />
+      <label htmlFor="length">{"Length (CM)"}</label>
+      <input type="number" id="length" name="length" value={dimensions.length} onChange={handleDimensionChange} onBeforeInput={onlyNums} required />
+
+      <p>{"Please enter dimensions in HxWxL format"}</p>
+
     </div>
   );
 };
