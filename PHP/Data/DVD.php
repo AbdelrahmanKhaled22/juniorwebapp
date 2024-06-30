@@ -26,25 +26,30 @@ class DVD extends Product
             $stmt->execute([$this->sku, $this->name, $this->price, $this->type]);
             $this->id = $db->lastInsertId();
 
-            // Handle specific product table
+            // Handle dvd specific properties
             $this->saveSpecific($db);
 
             $db->commit();
         } catch (\PDOException $e) {
             $db->rollBack();
-
-            if ($e->errorInfo[1] == 1062) {
+            if ($e->errorInfo[1] == 1062) { //error code for duplicate entry of unique SKU
                 http_response_code(409);
 
                 $errorResponse = [
                     'error' => 'Please enter a unique SKU'
                 ];
-
-                echo json_encode($errorResponse);
-                exit;
             } else {
-                echo json_encode($e->getMessage());
+                http_response_code(409);
+
+                $errorResponse = [
+
+                    'error' => 'Invalid Input'
+                ];
             }
+
+
+            echo json_encode($errorResponse);
+            exit;
         }
     }
 

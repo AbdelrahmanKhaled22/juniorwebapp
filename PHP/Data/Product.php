@@ -20,6 +20,8 @@ abstract class Product
     }
 
     abstract public function save($db);
+
+    // Static function loads products of all types
     public static function load($db)
     {
         $stmt = $db->query("
@@ -43,12 +45,17 @@ LEFT JOIN
     furniture f ON p.id = f.product_id;
 
         ");
+
+        // fetchAll() uses FETCHASSOC by default because we set the default mode in our Database.php file
         $data = $stmt->fetchAll();
 
 
         return $data;
     }
 
+
+    /* Static function deletes products from products table 
+    and by extension the corresponding table because of cascading deletes config in our db*/
     public static function deleteByIds($pdo, $ids)
     {
         try {

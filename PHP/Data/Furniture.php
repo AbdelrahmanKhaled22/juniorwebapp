@@ -26,17 +26,27 @@ class Furniture extends Product
             $stmt->execute([$this->sku, $this->name, $this->price, $this->type]);
             $this->id = $db->lastInsertId();
 
-            // Handle specific product table
+            // Handle furniture specific properties
             $this->saveSpecific($db);
 
             $db->commit();
         } catch (\PDOException $e) {
             $db->rollBack();
-            http_response_code(409);
+            if ($e->errorInfo[1] == 1062) { //error code for duplicate entry of unique SKU
+                http_response_code(409);
 
-            $errorResponse = [
-                'error' => 'Please enter a unique SKU'
-            ];
+                $errorResponse = [
+                    'error' => 'Please enter a unique SKU'
+                ];
+            } else {
+                http_response_code(409);
+
+                $errorResponse = [
+
+                    'error' => 'Invalid Input'
+                ];
+            }
+
 
             echo json_encode($errorResponse);
             exit;

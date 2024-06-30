@@ -1,26 +1,29 @@
 <?php
 
+// Load the dependencies of this file
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use ProductData\Database;
 use ProductData\Book;
 use ProductData\Furniture;
 use ProductData\DVD;
-
+//----------------------------------------//
 
 
 // Mapping of types to class names
 $classMap = [
     'Book' => 'ProductData\\Book',
     'Furniture' => 'ProductData\\Furniture',
-    'DVD' => 'ProductData\\DVD',
-    // Add other classes as needed
+    'DVD' => 'ProductData\\DVD'
 ];
 
-// Example payload from frontend
+// Parse the incoming json
 $payload = json_decode(file_get_contents('php://input'), true);
 
+// A debugging statement
 error_log("Received payload: " . print_r($payload, true));
+
 
 $type = $payload['type']; // Type from frontend payload
 
@@ -28,7 +31,7 @@ $type = $payload['type']; // Type from frontend payload
 if (isset($classMap[$type])) {
     $className = $classMap[$type];
 
-    // Extract constructor arguments from payload, including nested 'attributes'
+    // Extract constructor arguments from payload
     $constructorArgs = [
         'sku' => $payload['sku'],
         'name' => $payload['name'],
@@ -55,10 +58,11 @@ if (isset($classMap[$type])) {
     // Using Reflection to dynamically create an instance
     try {
         $reflectionClass = new \ReflectionClass($className);
+        // Passing in constructorArgs is the same as passing in named parameters for any of our classes dynamically
         $productInstance = $reflectionClass->newInstanceArgs($constructorArgs);
 
 
-        // Example: Saving the product instance
+        // Establish the connection
         $db = new Database();
         $pdo = $db->getConnection();
 
