@@ -8,7 +8,7 @@ class Book extends Product
     private $author;
     private $weight;
 
-    public function __construct($sku, $name, $price, $author, $weight, $type = "Book")
+    public function __construct($sku, $name, $price, $weight, $type = "Book", $author = null)
     {
         parent::__construct($sku, $name, $price, $type);
         $this->author = $author;
@@ -32,11 +32,21 @@ class Book extends Product
             $db->commit();
         } catch (\PDOException $e) {
             $db->rollBack();
-            http_response_code(409);
+            if ($e->errorInfo[1] == 1062) {
+                http_response_code(409);
 
-            $errorResponse = [
-                'error' => 'Please enter a unique SKU'
-            ];
+                $errorResponse = [
+                    'error' => 'Please enter a unique SKU'
+                ];
+            } else {
+                http_response_code(409);
+
+                $errorResponse = [
+
+                    'error' => 'Invalid Input'
+                ];
+            }
+
 
             echo json_encode($errorResponse);
             exit;

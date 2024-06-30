@@ -8,7 +8,7 @@ const AddBook = ({ attributes, handleInputChange }) => {
       <input type="text" id="author" name="attributes.author" value={attributes.author || ''} onChange={handleInputChange} />
       
       <label htmlFor="weight">{"Weight (KG)"}</label>
-      <input type="text" id="weight" name="attributes.weight" value={attributes.weight || ''} onChange={handleInputChange} />
+      <input type="text" id="weight" name="attributes.weight" value={attributes.weight || ''} onChange={handleInputChange} required/>
     
       <p>{"Please provide weight in kilograms"}</p>
     </div>

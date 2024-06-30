@@ -1,13 +1,12 @@
 <?php
 
-namespace ProductData;
+require __DIR__ . '/../vendor/autoload.php';
 
-require_once __DIR__ . "/../Config/Config.php";
-require_once __DIR__ . "/../Data/Database.php";
-require_once __DIR__ . "/../Data/Product.php";
-require_once __DIR__ . "/../Data/Book.php";
-require_once __DIR__ . "/../Data/DVD.php";
-require_once __DIR__ . "/../Data/Furniture.php";
+use ProductData\Database;
+use ProductData\Book;
+use ProductData\Furniture;
+use ProductData\DVD;
+
 
 
 // Mapping of types to class names
@@ -56,7 +55,7 @@ if (isset($classMap[$type])) {
     // Using Reflection to dynamically create an instance
     try {
         $reflectionClass = new \ReflectionClass($className);
-        $productInstance = $reflectionClass->newInstanceArgs(array_values($constructorArgs));
+        $productInstance = $reflectionClass->newInstanceArgs($constructorArgs);
 
 
         // Example: Saving the product instance

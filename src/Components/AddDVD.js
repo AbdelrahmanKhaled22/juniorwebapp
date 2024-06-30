@@ -17,7 +17,7 @@ const AddDVD = ({ attributes, handleInputChange }) => {
   return (
     <div>
       <label htmlFor="size">{"Size (MB)"}</label>
-      <input type="number" step="1" id="size" name="attributes.size" value={attributes.size || ''} onChange={handleInputChange} onBeforeInput={handleBeforeInput} />
+      <input type="number" step="1" id="size" name="attributes.size" value={attributes.size || ''} onChange={handleInputChange} onBeforeInput={handleBeforeInput} required />
 
       <p>{"Please provide size in megabytes"}</p>  
     </div>

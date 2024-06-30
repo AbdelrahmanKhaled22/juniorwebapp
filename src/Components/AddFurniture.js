@@ -42,7 +42,7 @@ const AddFurniture = ({ attributes, handleInputChange }) => {
   return (
     <div>
       <label htmlFor="material">Material:</label>
-      <input type="text" id="material" name="attributes.material" value={attributes.material || ''} onChange={handleInputChange} onBeforeInput={noNums} required/>
+      <input type="text" id="material" name="attributes.material" value={attributes.material || ''} onChange={handleInputChange} onBeforeInput={noNums}/>
 
       <label htmlFor="height">{"Height (CM)"}</label>
       <input type="number" id="height" name="height" value={dimensions.height} onChange={handleDimensionChange} onBeforeInput={onlyNums} required />

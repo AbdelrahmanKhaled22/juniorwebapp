@@ -1,6 +1,6 @@
 <?php
 
-namespace Config;
+
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one you want to allow

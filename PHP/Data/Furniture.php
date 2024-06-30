@@ -8,7 +8,7 @@ class Furniture extends Product
     private $material;
     private $dimensions;
 
-    public function __construct($sku, $name, $price, $material, $dimensions, $type = "Furniture")
+    public function __construct($sku, $name, $price, $dimensions, $type = "Furniture", $material = null)
     {
         parent::__construct($sku, $name, $price, $type);
         $this->material = $material;

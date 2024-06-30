@@ -68,7 +68,7 @@ const AddProduct = () => {
       ...attributes, // Include additional attributes based on type
     };
     try {
-      const response = await fetch('http://localhost:8000/Insert-Product.php', {
+      const response = await fetch('https://juniordevtest-abdelrahman-khaled.000webhostapp.com/PHP/APIs/Insert-Product.php', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -115,6 +115,7 @@ const AddProduct = () => {
     <div className='header'>
         <label className='title'>AddProduct</label>
         <div className='actions'>
+            <button className='action-button' type="submit" form='product_form'>Save</button>
             <Link to="/">
             <button className='action-button'>
                 Cancel
@@ -123,28 +124,30 @@ const AddProduct = () => {
         </div>
     </div>
       {errorMessage && <h1>{errorMessage}</h1>}
-          <form id='product_form' className='form' onSubmit={handleSubmit}>
-            <label htmlFor="sku">{"SKU"}</label>
-            <input type="text" id="sku" name="sku" value={sku} onChange={handleInputChange} required/>
-          
-            <label htmlFor="name">{"Name"}</label>
-            <input type="text" id="name" name="name" value={name} onChange={handleInputChange} onBeforeInput={noNums} required />
-          
-            <label htmlFor="price">{"Price ($)"}</label>
-            <input type="number" id="price" name="price" step="0.01" value={price} onChange={handleInputChange} onBeforeInput={onlyNums} required />
-          
-            <label htmlFor="type">{"Type"}</label>
-            <select id="productType" name="type" value={type} onChange={handleInputChange} required>
-              <option value="">Select Type</option>
-              <option value="Furniture">Furniture</option>
-              <option value="DVD">DVD</option>
-              <option value="Book">Book</option>
-            </select>
-          
-            {renderAttributes()}
-          
-            <div style={{justifyContent: 'flex-end'}} className='actions'><button className='action-button' type="submit">Save</button></div>
-          </form>
+          <div className='form-container'>
+            <form id='product_form' className='form' onSubmit={handleSubmit}>
+              <label htmlFor="sku">{"SKU"}</label>
+              <input type="text" id="sku" name="sku" value={sku} onChange={handleInputChange} required/>
+            
+              <label htmlFor="name">{"Name"}</label>
+              <input type="text" id="name" name="name" value={name} onChange={handleInputChange} required />
+            
+              <label htmlFor="price">{"Price ($)"}</label>
+              <input type="number" id="price" name="price" step="0.01" value={price} onChange={handleInputChange} onBeforeInput={onlyNums} required />
+            
+              <label htmlFor="type">{"Type"}</label>
+              <select id="productType" name="type" value={type} onChange={handleInputChange} required>
+                <option value="">Select Type</option>
+                <option value="Furniture">Furniture</option>
+                <option value="DVD">DVD</option>
+                <option value="Book">Book</option>
+              </select>
+            
+              {renderAttributes()}
+            
+            
+            </form>
+          </div>
       </div>
   );
 };

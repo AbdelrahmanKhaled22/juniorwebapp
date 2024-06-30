@@ -1,13 +1,10 @@
 <?php
 
-namespace ProductData;
+require __DIR__ . '/../vendor/autoload.php';
 
-require_once __DIR__ . "/../Config/Config.php";
-require_once __DIR__ . "/../Data/Database.php";
-require_once __DIR__ . "/../Data/Product.php";
-require_once __DIR__ . "/../Data/Book.php";
-require_once __DIR__ . "/../Data/DVD.php";
-require_once __DIR__ . "/../Data/Furniture.php";
+use ProductData\Database;
+use ProductData\Product;
+
 
 // Get the data from the POST request
 $data = json_decode(file_get_contents('php://input'), true);
