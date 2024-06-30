@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const AddProduct = () => {
+  
   const [sku, setSku] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -41,23 +42,22 @@ const AddProduct = () => {
       }
     }
   };
+
+
   const onlyNums = (event) => {
-    const allowedCharacters = /[0-9]/; // Allow only digits 0-9
-  
-    // Check if the entered character is not allowed
-    if (!allowedCharacters.test(event.data)) {
-      event.preventDefault(); // Prevent default action (input)
+
+    // Allow only digits 0-9
+    const allowedCharacters = /[0-9]/; 
+
+    if (!allowedCharacters.test(event.data)) { // Check if the entered character is not allowed
+      
+      // Prevent default action (input)
+      event.preventDefault(); 
     }
   };
 
-  const noNums = (event) => {
-    const forbiddenCharacters = /[0-9]/; // Allow only digits 0-9
-  
-    // Check if the entered character is forbidden
-    if (forbiddenCharacters.test(event.data)) {
-      event.preventDefault(); // Prevent default action (input)
-    }
-  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
@@ -95,6 +95,7 @@ const AddProduct = () => {
     }
   };
 
+  // Mapping Components to be rendered dynamically based on type switcher 
   const componentMap = {
     Furniture: AddFurniture,
     DVD: AddDVD,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const AddFurniture = ({ attributes, handleInputChange }) => {
+  
   const [dimensions, setDimensions] = useState({
     height: '',
     width: '',
@@ -8,22 +9,30 @@ const AddFurniture = ({ attributes, handleInputChange }) => {
   });
 
   const onlyNums = (event) => {
-    const allowedCharacters = /[0-9]/; // Allow only digits 0-9
-  
-    // Check if the entered character is not allowed
-    if (!allowedCharacters.test(event.data)) {
-      event.preventDefault(); // Prevent default action (input)
+
+    // Allow only digits 0-9
+    const allowedCharacters = /[0-9]/; 
+
+    if (!allowedCharacters.test(event.data)) { // Check if the entered character is not allowed
+      
+      // Prevent default action (input)
+      event.preventDefault(); 
     }
   };
 
   const noNums = (event) => {
-    const forbiddenCharacters = /[0-9]/; // Allow only digits 0-9
+
+    // Allow only digits 0-9
+    const forbiddenCharacters = /[0-9]/; 
   
-    // Check if the entered character is forbidden
-    if (forbiddenCharacters.test(event.data)) {
-      event.preventDefault(); // Prevent default action (input)
+    
+    if (forbiddenCharacters.test(event.data)) { // Check if the entered character is forbidden
+      
+      // Prevent default action (input)
+      event.preventDefault(); 
     }
   };
+  
   const handleDimensionChange = (e) => {
     const { name, value } = e.target;
     const newDimensions = { ...dimensions, [name]: value };
