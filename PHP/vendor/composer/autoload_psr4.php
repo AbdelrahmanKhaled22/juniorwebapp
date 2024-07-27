@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ProductData\\' => array($baseDir . '/Data'),
+    'ProductAPI\\' => array($baseDir . '/API'),
 );

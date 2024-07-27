@@ -1,7 +1,9 @@
 {
     "autoload": {
         "psr-4": {
-            "ProductData\\": "Data/"
+            "ProductData\\": "Data/",
+            "ProductAPI\\": "API/"
+
         }
         ,
         "files": [

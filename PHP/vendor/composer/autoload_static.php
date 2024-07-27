@@ -14,6 +14,7 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'P' => 
         array (
             'ProductData\\' => 12,
+            'ProductAPI\\' => 11,
         ),
     );
 
@@ -21,6 +22,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'ProductData\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Data',
+        ),
+        'ProductAPI\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/API',
         ),
     );
 
