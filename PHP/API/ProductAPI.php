@@ -108,6 +108,25 @@ class ProductAPI
 
     private function handleDelete()
     {
+        // Parse the json from the POST request
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        // Storing all the ids of the items that should be deleted
+        $ids = $data['ids'];
+        try {
+
+            // Establishing a connection with the db
+
+
+
+            // This static function takes the connection and ids as arguments and executes a delete statement
+            ProductModel::deleteByIds($this->db, $ids);
+
+
+            echo json_encode(['status' => 'success']);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     private function sendResponse($statusCode, $data)

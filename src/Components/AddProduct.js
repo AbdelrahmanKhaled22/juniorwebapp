@@ -68,7 +68,7 @@ const AddProduct = () => {
       ...attributes, // Include additional attributes based on type
     };
     try {
-      const response = await fetch('https://juniordevtest-abdelrahman-khaled.000webhostapp.com/PHP/APIs/Insert-Product.php', {
+      const response = await fetch('http://localhost:8000/api.php', {
         method: 'POST',
         mode: 'cors',
         headers: {

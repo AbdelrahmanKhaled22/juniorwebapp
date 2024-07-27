@@ -8,7 +8,7 @@ function ProductList(){
     const [data, setData] = useState([]);
     const [selectedItems, setSelectedItems] = useState({});
     useEffect(() => {
-      fetch('https://juniordevtest-abdelrahman-khaled.000webhostapp.com/PHP/APIs/Get-Products.php',{
+      fetch('http://localhost:8000/api.php',{
         method: 'GET',
         mode: 'cors'
       })
@@ -38,8 +38,8 @@ function ProductList(){
   
     const handleDelete = () => {
       const idsToDelete = Object.keys(selectedItems).filter(id => selectedItems[id]);
-      fetch('https://juniordevtest-abdelrahman-khaled.000webhostapp.com/PHP/APIs/Delete-Products.php', {
-        method: 'POST',
+      fetch('http://localhost:8000/api.php', {
+        method: 'DELETE',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
