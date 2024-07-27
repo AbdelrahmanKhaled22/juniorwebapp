@@ -2,8 +2,6 @@
 
 namespace ProductData;
 
-use Exception;
-
 class DVD extends Product
 {
     private $size;
