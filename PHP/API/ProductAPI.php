@@ -32,8 +32,6 @@ class ProductAPI
                 return $this->handleGet();
             case 'POST':
                 return $this->handlePost();
-            case 'DELETE':
-                return $this->handleDelete();
             default:
                 return $this->sendResponse(405, 'Method Not Allowed');
         }
@@ -47,14 +45,22 @@ class ProductAPI
 
     private function handlePost()
     {
+
+        // Parse the incoming json
+        $payload = json_decode(file_get_contents('php://input'), true);
+
+        // Check if this is a delete action
+        if (isset($payload['action']) && $payload['action'] === 'delete') {
+            return $this->handleDelete($payload);
+        }
+
         // Mapping of types to class names
         $classMap = [
             'Book' => 'ProductData\\Book',
             'Furniture' => 'ProductData\\Furniture',
             'DVD' => 'ProductData\\DVD'
         ];
-        // Parse the incoming json
-        $payload = json_decode(file_get_contents('php://input'), true);
+
         $type = $payload['type']; // Type from frontend payload
         // Ensure the type is valid and exists in the class map
         if (isset($classMap[$type])) {
@@ -106,18 +112,12 @@ class ProductAPI
         }
     }
 
-    private function handleDelete()
+    private function handleDelete($data)
     {
-        // Parse the json from the POST request
-        $data = json_decode(file_get_contents('php://input'), true);
 
         // Storing all the ids of the items that should be deleted
         $ids = $data['ids'];
         try {
-
-            // Establishing a connection with the db
-
-
 
             // This static function takes the connection and ids as arguments and executes a delete statement
             ProductModel::deleteByIds($this->db, $ids);
