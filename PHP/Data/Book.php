@@ -43,7 +43,7 @@ class Book extends Product
 
                 $errorResponse = [
 
-                    'error' => 'Invalid Input'
+                    'error' => $e->errorInfo[2]
                 ];
             }
 
